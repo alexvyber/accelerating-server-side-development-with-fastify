@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fastify": "^4.19.2"
+    "fastify": "^4.19.2",
+    "pino-pretty": "^10.1.0"
   }
 }

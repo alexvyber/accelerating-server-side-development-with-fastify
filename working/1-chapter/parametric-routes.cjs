@@ -17,6 +17,9 @@ const app = fastify({
 })
 
 const cats = []
+
+app.get('/cats', (_request, reply ) => reply.send({ cats }))
+
 app.post('/cat', function saveCat (request, reply) {
   cats.push(request.body)
   return { allCats: cats }
@@ -48,8 +51,8 @@ app.get('/cat/*', function sendCats (request, reply) {
 })
 
 app.listen({
-  port: 8080,
-  host: '0.0.0.0'
+  port: 8000,
+  host: 'localhost'
 })
   .then((address) => {
     // Server is now listening on ${address}
