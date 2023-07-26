@@ -28,7 +28,7 @@
   "homepage": "https://github.com/PacktPublishing/Accelerating-Server-Side-Development-with-Fastify#readme",
   "dependencies": {
     "fastify": "^4.15.0",
-    "fastify-plugin": "^4.5.0"
+    "fastify-plugin": "^4.5.1"
   },
   "devDependencies": {
     "pino-pretty": "^8.0.0",

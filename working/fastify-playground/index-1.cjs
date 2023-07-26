@@ -115,14 +115,17 @@ app.get("/log", function log(request, reply) {
 //   }
 // });
 
-app.get('/cat/*', function sendCats(request, reply) {
-  reply.send({ allCats: cats })
-})
+app.get("/cat/*", function sendCats(request, reply) {
+  reply.send({ allCats: cats });
+});
 
-app.register(function myPlugin(pluginInstance, opts, next) {
-  pluginInstance.log.info('I am a plugin instance, children of app')
-  next()
-}, { hello: 'the opts object' })
+app.register(
+  function myPlugin(pluginInstance, opts, next) {
+    pluginInstance.log.info("I am a plugin instance, children of app");
+    next();
+  },
+  { hello: "the opts object" }
+);
 
 async function start() {
   await app.listen({
