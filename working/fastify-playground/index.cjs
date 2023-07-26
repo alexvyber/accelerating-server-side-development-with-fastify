@@ -93,27 +93,36 @@ app.get("/log", function log(request, reply) {
   reply.send();
 });
 
-app.get("/cat/:catName", function readCat(request, reply) {
-  const lookingFor = request.params.catName;
+// app.get("/cat/:catName", function readCat(request, reply) {
+//   const lookingFor = request.params.catName;
+//
+//   this.log.debug("cats: ",cats );
+//
+//   const result = cats.find((cat) => {
+//     this.log.debug("cat:", cat);
+//
+//     return cat.name == lookingFor;
+//   });
+//
+//     this.log.debug("result: ", result);
+//
+//   if (result) {
+//     return { cat: result };
+//   } else {
+//     reply.code(404);
+//     reply.send("Not Found1:");
+//     // throw new Error(`cat ${lookingFor} not found`);
+//   }
+// });
 
-  this.log.debug("cats: ",cats );
+app.get('/cat/*', function sendCats(request, reply) {
+  reply.send({ allCats: cats })
+})
 
-  const result = cats.find((cat) => {
-    this.log.debug("cat:", cat);
-
-    return cat.name == lookingFor;
-  });
-
-    this.log.debug("result: ", result);
-
-  if (result) {
-    return { cat: result };
-  } else {
-    reply.code(404);
-    reply.send("Not Found1:");
-    // throw new Error(`cat ${lookingFor} not found`);
-  }
-});
+app.register(function myPlugin(pluginInstance, opts, next) {
+  pluginInstance.log.info('I am a plugin instance, children of app')
+  next()
+}, { hello: 'the opts object' })
 
 async function start() {
   await app.listen({
