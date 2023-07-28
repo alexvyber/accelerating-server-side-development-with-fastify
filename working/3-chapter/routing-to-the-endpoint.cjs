@@ -1,13 +1,13 @@
-'use strict'
+"use strict";
 
-const fastify = require('fastify')
+const fastify = require("fastify");
 const app = fastify({
-  logger: true
-})
+  logger: true,
+});
 
-app.get('/', async () => {})
-app.get('/', async () => {}) // [1]
+app.get("/", async () => {});
+app.get("/a", async () => {}); // [1]
 
 app.listen(8080, (err) => {
-  app.log.error(err)
-})
+  app.log.error(err);
+});

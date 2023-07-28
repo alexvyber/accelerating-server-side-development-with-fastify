@@ -1,13 +1,13 @@
-'use strict'
-const fastify = require('fastify')
+"use strict";
+const fastify = require("fastify");
 const app = fastify({
-  logger: true
-})
+  logger: true,
+});
 
-app.addHook('onRequest', function hook (request, reply, done) {
-  request.log.info('Is a 404 HTTP request? %s', request.is404)
-  done()
-})
+app.addHook("onRequest", function hook(request, reply, done) {
+  request.log.info("Is a 404 HTTP request? %s", request.is404);
+  done();
+});
 
 const niceHtmlPage = `<html>
 <head>
@@ -27,22 +27,26 @@ const niceHtmlPage = `<html>
 <body>
   <h1>Error 404</h1>
 </body>
-</html>`
+</html>`;
 
-app.register(async function plugin (instance, opts) {
-  instance.setNotFoundHandler(function html404 (request, reply) {
-    reply.type('text/html').send(niceHtmlPage)
+app.register(
+  async function plugin(instance, opts) {
+    instance.setNotFoundHandler(function html404(request, reply) {
+      reply.type("text/html").send(niceHtmlPage);
+    });
+  },
+  { prefix: "/site" }
+); // [1]
+
+app.setNotFoundHandler(function custom404(request, reply) {
+  reply.send({ not: "found" });
+});
+
+app
+  .listen({
+    port: 8080,
+    host: "0.0.0.0",
   })
-}, { prefix: '/site' }) // [1]
-
-app.setNotFoundHandler(function custom404 (request, reply) {
-  reply.send({ not: 'found' })
-})
-
-app.listen({
-  port: 8080,
-  host: '0.0.0.0'
-})
   .then((address) => {
     // Started
-  })
+  });
