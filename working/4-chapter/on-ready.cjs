@@ -1,8 +1,8 @@
-const Fastify = require('fastify')
+const Fastify = require("fastify")
 
 const app = Fastify({ logger: true })
-app.decorate('data', 'mydata') // [1]
-app.addHook('onReady', async function () {
+app.decorate("data", "mydata") // [1]
+app.addHook("onReady", async function () {
   // [2]
   app.log.info(this.data)
 })
@@ -10,9 +10,9 @@ app.addHook('onReady', async function () {
 app
   .ready()
   .then(() => {
-    app.log.info('Application is ready.')
+    app.log.info("Application is ready.")
   })
-  .catch(err => {
+  .catch((err) => {
     app.log.error(err)
     process.exit()
   })
