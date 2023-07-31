@@ -1,35 +1,35 @@
-'use strict'
+"use strict"
 
-const fastify = require('fastify')
+const fastify = require("fastify")
 
 const app = fastify({ logger: true })
 
 const ajvConfigDemoSchema = {
-  type: 'object',
+  type: "object",
   properties: {
-    coerceTypesDemo: { type: 'integer' },
-    useDefaultsDemo: { type: 'string', default: 'hello' },
+    coerceTypesDemo: { type: "integer" },
+    useDefaultsDemo: { type: "string", default: "hello" },
     removeAdditional: {
-      type: 'object',
+      type: "object",
       additionalProperties: false,
       properties: {
         onlyThisField: {
-          type: 'boolean'
-        }
-      }
+          type: "boolean",
+        },
+      },
     },
-    nullableDemo: { type: 'string', nullable: true },
-    notNullableDemo: { type: 'string' }
-  }
+    nullableDemo: { type: "string", nullable: true },
+    notNullableDemo: { type: "string" },
+  },
 }
 
-app.post('/config-in-action', {
+app.post("/config-in-action", {
   schema: {
-    body: ajvConfigDemoSchema
+    body: ajvConfigDemoSchema,
   },
-  handler (request, reply) {
+  handler(request, reply) {
     reply.send(request.body)
-  }
+  },
 })
 
 app.listen({ port: 8080 })

@@ -1,37 +1,40 @@
-'use strict'
+"use strict"
 
-const fastify = require('fastify')
+const fastify = require("fastify")
 
 const app = fastify({
-  schemaErrorFormatter: function (errors, httpPart) { // [1]
-    return new Error('root error formatter')
-  }
+  schemaErrorFormatter: function (errors, httpPart) {
+    // [1]
+    return new Error("root error formatter")
+  },
 })
-app.get('/custom-route-error-formatter', {
+app.get("/custom-route-error-formatter", {
   handler: echo,
-  schema: { query: { myId: { type: 'integer' } } },
-  schemaErrorFormatter: function (errors, httpPart) { // [2]
-    return new Error('route error formatter')
-  }
+  schema: { query: { myId: { type: "integer" } } },
+  schemaErrorFormatter: function (errors, httpPart) {
+    // [2]
+    return new Error("route error formatter")
+  },
 })
-app.register(function plugin (instance, opts, next) {
-  instance.get('/custom-error-formatter', {
+app.register(function plugin(instance, opts, next) {
+  instance.get("/custom-error-formatter", {
     handler: echo,
-    schema: { query: { myId: { type: 'integer' } } }
+    schema: { query: { myId: { type: "integer" } } },
   })
-  instance.setSchemaErrorFormatter(function (errors, httpPart) { // [3]
-    return new Error('plugin error formatter')
+  instance.setSchemaErrorFormatter(function (errors, httpPart) {
+    // [3]
+    return new Error("plugin error formatter")
   })
   next()
 })
 
 app.listen({ port: 8080 })
 
-async function echo (request, reply) {
+async function echo(request, reply) {
   return {
     params: request.params,
     body: request.body,
     query: request.query,
-    headers: request.headers
+    headers: request.headers,
   }
 }

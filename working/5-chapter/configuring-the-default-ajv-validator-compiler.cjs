@@ -1,44 +1,39 @@
-'use strict'
+"use strict"
 
-const fastify = require('fastify')
+const fastify = require("fastify")
 
 const app = fastify({
   ajv: {
     customOptions: {
-      coerceTypes: 'array', // already default
-      removeAdditional: 'all'
+      coerceTypes: "array", // already default
+      removeAdditional: "all",
     },
-    plugins: [
-      [
-        require('ajv-keywords'),
-        'transform'
-      ]
-    ]
-  }
+    plugins: [[require("ajv-keywords"), "transform"]],
+  },
 })
-app.get('/search', {
+app.get("/search", {
   handler: echo,
   schema: {
     query: {
       item: {
-        type: 'array',
+        type: "array",
         maxItems: 10,
         items: {
-          type: 'string',
-          transform: ['toLowerCase']
-        }
-      }
-    }
-  }
+          type: "string",
+          transform: ["toLowerCase"],
+        },
+      },
+    },
+  },
 })
 
 app.listen({ port: 8080 })
 
-async function echo (request, reply) {
+async function echo(request, reply) {
   return {
     params: request.params,
     body: request.body,
     query: request.query,
-    headers: request.headers
+    headers: request.headers,
   }
 }

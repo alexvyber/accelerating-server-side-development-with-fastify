@@ -1,22 +1,22 @@
-'use strict'
+"use strict"
 
-const fastify = require('fastify')
+const fastify = require("fastify")
 
 const app = fastify({
   logger: true,
   ajv: {
     customOptions: {
-      coerceTypes: 'array',
-      removeAdditional: 'all'
-    }
-  }
+      coerceTypes: "array",
+      removeAdditional: "all",
+    },
+  },
 })
 
-app.get('/custom-error-handler', {
+app.get("/custom-error-handler", {
   handler: echo,
   schema: {
-    query: { myId: { type: 'integer' } }
-  }
+    query: { myId: { type: "integer" } },
+  },
 })
 
 app.setErrorHandler(function (error, request, reply) {
@@ -33,11 +33,11 @@ app.setErrorHandler(function (error, request, reply) {
 
 app.listen({ port: 8080 })
 
-async function echo (request, reply) {
+async function echo(request, reply) {
   return {
     params: request.params,
     body: request.body,
     query: request.query,
-    headers: request.headers
+    headers: request.headers,
   }
 }

@@ -1,25 +1,25 @@
-'use strict'
-const fastify = require('fastify')
+"use strict"
+const fastify = require("fastify")
 
 const app = fastify({ logger: true })
 
-app.post('/filter', {
-  async handler (request, reply) {
+app.post("/filter", {
+  async handler(request, reply) {
     return {
-      username: 'Foo',
-      password: 'qwerty'
+      username: "Foo",
+      password: "qwerty",
     }
   },
   schema: {
     response: {
-      '2xx': {
-        type: 'object',
+      "2xx": {
+        type: "object",
         properties: {
-          username: { type: 'string' }
-        }
-      }
-    }
-  }
+          username: { type: "string" },
+        },
+      },
+    },
+  },
 })
 
 app.listen({ port: 8080 })
