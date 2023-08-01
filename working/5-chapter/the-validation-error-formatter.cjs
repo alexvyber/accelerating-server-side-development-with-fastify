@@ -8,6 +8,7 @@ const app = fastify({
     return new Error("root error formatter")
   },
 })
+
 app.get("/custom-route-error-formatter", {
   handler: echo,
   schema: { query: { myId: { type: "integer" } } },
@@ -16,6 +17,7 @@ app.get("/custom-route-error-formatter", {
     return new Error("route error formatter")
   },
 })
+
 app.register(function plugin(instance, opts, next) {
   instance.get("/custom-error-formatter", {
     handler: echo,

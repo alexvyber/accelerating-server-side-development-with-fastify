@@ -8,7 +8,7 @@ const ajvConfigDemoSchema = {
   type: "object",
   properties: {
     coerceTypesDemo: { type: "integer" },
-    useDefaultsDemo: { type: "string", default: "hello" },
+    useDefaultsDemo: { type: "string", default: "hello!!!" },
     removeAdditional: {
       type: "object",
       additionalProperties: false,

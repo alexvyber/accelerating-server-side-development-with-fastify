@@ -11,14 +11,17 @@ const app = fastify({
     },
   },
 })
+
 app.addSchema({
   $id: "http://myapp.com/string.json",
   type: "string",
   maxLength: 50,
 })
+
 function myCompilerFactory(externalSchemas, ajvServerOption) {
   return myValidatorCompiler // [3]
 }
+
 function myValidatorCompiler(routeData) {
   // eslint-disable-next-line
   const { schema, method, url, httpPart } = routeData

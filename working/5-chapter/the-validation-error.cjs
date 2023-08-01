@@ -19,7 +19,7 @@ app.get("/custom-error-handler", {
   },
 })
 
-app.setErrorHandler(function (error, request, reply) {
+app.setErrorHandler(function (error, _request, reply) {
   if (error.validation) {
     const { validation, validationContext } = error
     this.log.warn({ validationError: validation })
@@ -33,7 +33,7 @@ app.setErrorHandler(function (error, request, reply) {
 
 app.listen({ port: 8080 })
 
-async function echo(request, reply) {
+async function echo(request, _reply) {
   return {
     params: request.params,
     body: request.body,
