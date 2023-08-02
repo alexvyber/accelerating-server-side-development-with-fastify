@@ -1,8 +1,10 @@
-'use strict'
+"use strict"
 module.exports = [
   {
-    method: 'GET',
-    url: '/dog',
-    handler: function dog (request, reply) { reply.send('dog') }
-  }
+    method: "GET",
+    url: "/dog",
+    handler: function dog(request, reply) {
+      reply.send("dog")
+    },
+  },
 ]

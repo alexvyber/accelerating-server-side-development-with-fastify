@@ -28,7 +28,7 @@ However, make sure to join the [Fastify server](https://discord.gg/fastify) befo
 ✏️ As discussed in the `Improving the application structure` section, the following text is an example
 of a good application's README.md file, use it as a template to create your own and improve it based on your needs!
 
---------------------------------------------------------------------------------
+---
 
 # Project name
 

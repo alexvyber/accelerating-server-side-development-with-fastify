@@ -1,4 +1,3 @@
-
 # Chapter 1 - What is Fastify?
 
 In this chapter we will learn about the core concepts of Fastify, getting a complete overview of the

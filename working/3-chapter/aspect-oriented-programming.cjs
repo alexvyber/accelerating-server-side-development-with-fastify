@@ -1,35 +1,38 @@
-'use strict'
-const fastify = require('fastify')
+"use strict"
+const fastify = require("fastify")
 const app = fastify({
-  logger: true
+  logger: true,
 })
 
-app.addHook('onRoute', function hook (routeOptions) {
+app.addHook("onRoute", function hook(routeOptions) {
   if (routeOptions.config.private === true) {
-    routeOptions.onRequest = async function auth (request) {
-      if (request.headers.token !== 'admin') {
-        const authError = new Error('Private zone')
+    routeOptions.onRequest = async function auth(request) {
+      if (request.headers.token !== "admin") {
+        const authError = new Error("Private zone")
         authError.statusCode = 401
         throw authError
       }
     }
   }
 })
-app.get('/private', {
+app.get("/private", {
   config: { private: true },
-  handler
+  handler,
 })
-app.get('/public', {
+app.get("/public", {
   config: { private: false },
-  handler
+  handler,
 })
 
-app.listen({
-  port: 8080,
-  host: '0.0.0.0'
-})
+app
+  .listen({
+    port: 8080,
+    host: "0.0.0.0",
+  })
   .then((address) => {
     // Started
   })
 
-async function handler () { return 'hello' }
+async function handler() {
+  return "hello"
+}

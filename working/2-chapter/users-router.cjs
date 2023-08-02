@@ -4,17 +4,17 @@ module.exports = async function usersRouter(fastify, _) {
       // [1]
 
       child.get("/", async (_request, reply) => {
-        reply.send(child.users);
-      });
+        reply.send(child.users)
+      })
 
       child.post("/", async (request, reply) => {
         // [2]
-        const newUser = request.body;
-        child.users.push(newUser);
-        reply.send(newUser);
-      });
+        const newUser = request.body
+        child.users.push(newUser)
+        reply.send(newUser)
+      })
     },
 
     { prefix: "users" } // [3]
-  );
-};
+  )
+}

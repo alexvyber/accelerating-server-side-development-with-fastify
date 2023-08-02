@@ -1,23 +1,24 @@
-'use strict'
-const fastify = require('fastify')
+"use strict"
+const fastify = require("fastify")
 const app = fastify({
-  logger: true
+  logger: true,
 })
 
-const catRoutes = require('./cat.cjs')
-const dogRoutes = require('./dog.cjs')
+const catRoutes = require("./cat.cjs")
+const dogRoutes = require("./dog.cjs")
 
 catRoutes.forEach(loadRoute)
 dogRoutes.forEach(loadRoute)
 
-function loadRoute (routeOptions) {
+function loadRoute(routeOptions) {
   app.route(routeOptions)
 }
 
-app.listen({
-  port: 8080,
-  host: '0.0.0.0'
-})
+app
+  .listen({
+    port: 8080,
+    host: "0.0.0.0",
+  })
   .then((address) => {
     // Started
   })

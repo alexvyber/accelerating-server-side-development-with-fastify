@@ -1,9 +1,12 @@
-'use strict'
+"use strict"
 
-const fp = require('fastify-plugin')
+const fp = require("fastify-plugin")
 
-module.exports = fp(function schemaLoaderPlugin (fastify, opts, next) {
-  fastify.addSchema(require('./dotenv.json'))
+module.exports = fp(
+  function schemaLoaderPlugin(fastify, opts, next) {
+    fastify.addSchema(require("./dotenv.json"))
 
-  next()
-}, { name: 'application-schemas' })
+    next()
+  },
+  { name: "application-schemas" }
+)

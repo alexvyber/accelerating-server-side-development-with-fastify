@@ -1,8 +1,7 @@
 # Chapter 7 - Building a RESTful API
 
-In this chapter, we will build a well-structured RESTful API. 
+In this chapter, we will build a well-structured RESTful API.
 We will define routes, hooks, connect to a data source, and secure the endpoints.
-
 
 ## How to use this folder?
 
@@ -27,7 +26,7 @@ However, make sure to join the [Fastify server](https://discord.gg/fastify) befo
 ✏️ As discussed in the `Improving the application structure` section, the following text is an example
 of a good application's README.md file, use it as a template to create your own and improve it based on your needs!
 
---------------------------------------------------------------------------------
+---
 
 # Project name
 

@@ -1,26 +1,26 @@
-'use strict'
+"use strict"
 
 // This file contains code that we reuse
 // between our tests.
 
-const Fastify = require('fastify')
-const fp = require('fastify-plugin')
-const App = require('../app')
+const Fastify = require("fastify")
+const fp = require("fastify-plugin")
+const App = require("../app")
 
 // Fill in this config with all the configurations
 // needed for testing the application
-function config () {
+function config() {
   return {
     configData: {
-      NODE_ENV: 'test',
-      MONGO_URL: 'mongodb://localhost:27017/test'
-    }
+      NODE_ENV: "test",
+      MONGO_URL: "mongodb://localhost:27017/test",
+    },
   }
 }
 
 // automatically build and tear down our instance
-function build (t) {
-  const serverConfig = require('../configs/server-options')
+function build(t) {
+  const serverConfig = require("../configs/server-options")
   const app = Fastify(serverConfig)
 
   // fastify-plugin ensures that all decorators
@@ -36,5 +36,5 @@ function build (t) {
 
 module.exports = {
   config,
-  build
+  build,
 }

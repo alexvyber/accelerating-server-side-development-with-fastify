@@ -1,46 +1,50 @@
-'use strict'
+"use strict"
 
-const { fastify } = require('fastify')
+const { fastify } = require("fastify")
 const app = fastify({
   logger: {
-    level: 'error',
+    level: "error",
     // prettyPrint: true,
     serializers: {
-      hello: function serializeHello (data) {
-        return data.join(',')
-      }
-    }
-  }
+      hello: function serializeHello(data) {
+        return data.join(",")
+      },
+    },
+  },
 })
-app.get('/root', helloHandler)
+app.get("/root", helloHandler)
 
-async function helloHandler (request, reply) {
-  const hello = ['hello', 'world']
+async function helloHandler(request, reply) {
+  const hello = ["hello", "world"]
   request.log.debug({ hello })
-  return new Error('')
+  return new Error("")
 }
 
-app.register(async function plugin (instance, opts) {
-  instance.get('/plugin', helloHandler)
-}, {
-  logLevel: 'trace',
-  logSerializers: {
-    hello: function serializeHello (data) {
-      return data.join(':')
-    }
+app.register(
+  async function plugin(instance, opts) {
+    instance.get("/plugin", helloHandler)
+  },
+  {
+    logLevel: "trace",
+    logSerializers: {
+      hello: function serializeHello(data) {
+        return data.join(":")
+      },
+    },
   }
-})
+)
 
-app.get('/route', {
+app.get("/route", {
   handler: helloHandler,
-  logLevel: 'debug',
+  logLevel: "debug",
   logSerializers: {
-    hello: function toString (data) {
-      return data.join('+')
-    }
-  }
+    hello: function toString(data) {
+      return data.join("+")
+    },
+  },
 })
 
-app.inject('/route')
-  .then(() => app.inject('/plugin'))
-  .then(() => app.inject('/root'))
+app
+  .inject("/route")
+  .then(() => app.inject("/plugin"))
+  .then(() => app.inject("/root"))

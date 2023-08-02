@@ -1,39 +1,40 @@
-'use strict'
-const fastify = require('fastify')
+"use strict"
+const fastify = require("fastify")
 const app = fastify({
-  logger: true
+  logger: true,
 })
 
-async function operation (request, reply) {
+async function operation(request, reply) {
   return request.context.config
 }
-app.get('/', {
+app.get("/", {
   handler: operation,
   config: {
-    hello: 'world'
-  }
+    hello: "world",
+  },
 })
 
-app.addHook('preHandler', async function calculatePriority (request) {
+app.addHook("preHandler", async function calculatePriority(request) {
   request.priority = request.context.config.priority * 10
 })
-app.get('/private', {
+app.get("/private", {
   handler: schedule,
-  config: { priority: 5 }
+  config: { priority: 5 },
 })
-app.get('/public', {
+app.get("/public", {
   handler: schedule,
-  config: { priority: 1 }
+  config: { priority: 1 },
 })
 
-app.listen({
-  port: 8080,
-  host: '0.0.0.0'
-})
+app
+  .listen({
+    port: 8080,
+    host: "0.0.0.0",
+  })
   .then((address) => {
     // Started
   })
 
-async function schedule () {
+async function schedule() {
   return { scheduled: true }
 }

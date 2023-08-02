@@ -1,7 +1,7 @@
 module.exports = async function (app) {
-  app.get('/posts', async (request, reply) => {
+  app.get("/posts", async (request, reply) => {
     return {
-      posts: await app.posts.getAll()
+      posts: await app.posts.getAll(),
     }
   })
 }

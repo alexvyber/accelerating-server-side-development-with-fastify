@@ -1,7 +1,6 @@
 version: "3.7"
 
 services:
-
   app-v1:
     build: ./microservices/v1
     environment:

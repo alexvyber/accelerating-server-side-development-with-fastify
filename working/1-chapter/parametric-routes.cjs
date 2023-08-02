@@ -1,33 +1,33 @@
-'use strict'
-const fastify = require('fastify')
+"use strict"
+const fastify = require("fastify")
 
 const app = fastify({
   logger: {
-    level: 'debug',
+    level: "debug",
     transport: {
-      target: 'pino-pretty'
-    }
+      target: "pino-pretty",
+    },
   },
   disableRequestLogging: true,
-  requestIdLogLabel: 'reqId',
-  requestIdHeader: 'request-id',
+  requestIdLogLabel: "reqId",
+  requestIdHeader: "request-id",
   genReqId: function (httpIncomingMessage) {
     return `foo-${Math.random()}`
-  }
+  },
 })
 
 const cats = []
 
-app.get('/cats', (_request, reply ) => reply.send({ cats }))
+app.get("/cats", (_request, reply) => reply.send({ cats }))
 
-app.post('/cat', function saveCat (request, reply) {
+app.post("/cat", function saveCat(request, reply) {
   cats.push(request.body)
   return { allCats: cats }
 })
 
-app.get('/cat/:catName', function readCat (request, reply) {
+app.get("/cat/:catName", function readCat(request, reply) {
   const lookingFor = request.params.catName
-  const result = cats.find(cat => cat.name === lookingFor)
+  const result = cats.find((cat) => cat.name === lookingFor)
   if (result) {
     reply.send({ cat: result })
   } else {
@@ -46,14 +46,15 @@ app.get('/cat/:catName', function readCat (request, reply) {
 //   return 'CAT NOT FOUND'
 // })
 
-app.get('/cat/*', function sendCats (request, reply) {
+app.get("/cat/*", function sendCats(request, reply) {
   reply.send({ allCats: cats })
 })
 
-app.listen({
-  port: 8000,
-  host: 'localhost'
-})
+app
+  .listen({
+    port: 8000,
+    host: "localhost",
+  })
   .then((address) => {
     // Server is now listening on ${address}
   })

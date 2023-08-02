@@ -1,12 +1,12 @@
-'use strict'
+"use strict"
 
 const registered = []
 
 module.exports = {
-  async store (user) {
+  async store(user) {
     registered.push(user)
   },
-  data () {
+  data() {
     return registered
-  }
+  },
 }

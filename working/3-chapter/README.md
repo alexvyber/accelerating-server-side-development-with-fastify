@@ -1,4 +1,3 @@
-
 # Chapter 3 - Working with Routes
 
 In this chapter we will learn to expose routes to our application, and how to manage them.

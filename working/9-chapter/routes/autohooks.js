@@ -1,5 +1,3 @@
-'use strict'
+"use strict"
 
-module.exports = async function rootAutoHooks (app, opts) {
-
-}
+module.exports = async function rootAutoHooks(app, opts) {}

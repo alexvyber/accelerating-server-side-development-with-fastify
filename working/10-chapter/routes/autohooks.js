@@ -1,5 +1,5 @@
-'use strict'
+"use strict"
 
-module.exports = async function rootAutoHooks (fastify, opts) {
+module.exports = async function rootAutoHooks(fastify, opts) {
   // TODO: add application's hooks
 }

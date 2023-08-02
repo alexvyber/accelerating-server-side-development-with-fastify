@@ -1,4 +1,3 @@
-
 # Chapter 4 - Exploring Hooks
 
 This chapter explains how Fastify is different from other web frameworks because it uses hooks instead of middleware.  

@@ -1,10 +1,7 @@
 {
   "type": "object",
   "$id": "schema:dotenv",
-  "required": [
-    "MONGO_URL",
-    "JWT_SECRET"
-  ],
+  "required": ["MONGO_URL", "JWT_SECRET"],
   "properties": {
     "NODE_ENV": {
       "type": "string",

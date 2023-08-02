@@ -1,11 +1,11 @@
-const fastify = require('fastify')()
+const fastify = require("fastify")()
 
-fastify.register(require('@fastify/autoload'), {
-  dir: `${__dirname}/services`
+fastify.register(require("@fastify/autoload"), {
+  dir: `${__dirname}/services`,
 })
 
-fastify.register(require('@fastify/autoload'), {
-  dir: `${__dirname}/routes`
+fastify.register(require("@fastify/autoload"), {
+  dir: `${__dirname}/routes`,
 })
 
 /*

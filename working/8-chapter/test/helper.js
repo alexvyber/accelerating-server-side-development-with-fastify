@@ -1,67 +1,66 @@
-'use strict'
+"use strict"
 
-const crypto = require('node:crypto')
+const crypto = require("node:crypto")
 
 // This file contains code that we reuse
 // between our tests.
-const fcli = require('fastify-cli/helper')
+const fcli = require("fastify-cli/helper")
 
-const startArgs = '-l silent --options app.js'
+const startArgs = "-l silent --options app.js"
 
 const defaultEnv = {
-  NODE_ENV: 'test',
-  MONGO_URL: 'mongodb://localhost:27017/test',
-  JWT_SECRET: 'secret-1234567890'
+  NODE_ENV: "test",
+  MONGO_URL: "mongodb://localhost:27017/test",
+  JWT_SECRET: "secret-1234567890",
 }
 
 // Fill in this config with all the configurations
 // needed for testing the application
-function config (env) {
+function config(env) {
   return {
-    configData: env
+    configData: env,
   }
 }
 
 // automatically build and tear down our instance
-async function buildApp (t, env, serverOptions) {
-  const app = await fcli.build(startArgs,
-    config({ ...defaultEnv, ...env }),
-    serverOptions
-  )
-  t.teardown(() => { app.close() })
+async function buildApp(t, env, serverOptions) {
+  const app = await fcli.build(startArgs, config({ ...defaultEnv, ...env }), serverOptions)
+  t.teardown(() => {
+    app.close()
+  })
   return app
 }
 
-async function buildUser (app) {
-  const randomUser = crypto.randomBytes(16).toString('hex')
-  const password = 'icanpass'
+async function buildUser(app) {
+  const randomUser = crypto.randomBytes(16).toString("hex")
+  const password = "icanpass"
 
   await app.inject({
-    method: 'POST',
-    url: '/register',
+    method: "POST",
+    url: "/register",
     payload: {
       username: randomUser,
-      password
-    }
+      password,
+    },
   })
 
   const login = await app.inject({
-    method: 'POST',
-    url: '/authenticate',
+    method: "POST",
+    url: "/authenticate",
     payload: {
       username: randomUser,
-      password
-    }
+      password,
+    },
   })
 
   return {
     username: randomUser,
     password,
-    token: login.json().token
+    token: login.json().token,
   }
 }
 
 module.exports = {
   buildApp,
-  buildUser
+  buildUser,
 }

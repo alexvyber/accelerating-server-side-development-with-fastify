@@ -1,30 +1,30 @@
-"use strict";
-const fastify = require("fastify");
+"use strict"
+const fastify = require("fastify")
 const serverOptions = {
   logger: true,
-};
-const app = fastify(serverOptions);
+}
+const app = fastify(serverOptions)
 
 /* MULTIPLE PLUGINS */
-app.addHook("onRoute", buildHook("root")); // [1]
+app.addHook("onRoute", buildHook("root")) // [1]
 app.register(async function pluginOne(pluginInstance, opts) {
-  pluginInstance.addHook("onRoute", buildHook("pluginOne")); // [2]
-  pluginInstance.get("/one", async () => "one");
-});
+  pluginInstance.addHook("onRoute", buildHook("pluginOne")) // [2]
+  pluginInstance.get("/one", async () => "one")
+})
 
 app.register(async function pluginTwo(pluginInstance, opts) {
-  pluginInstance.addHook("onRoute", buildHook("pluginTwo")); // [3]
-  pluginInstance.get("/two", async () => "two");
+  pluginInstance.addHook("onRoute", buildHook("pluginTwo")) // [3]
+  pluginInstance.get("/two", async () => "two")
   pluginInstance.register(async function pluginThree(subPlugin, opts) {
-    subPlugin.addHook("onRoute", buildHook("pluginThree")); // [4]
-    subPlugin.get("/three", async () => "three");
-  });
-});
+    subPlugin.addHook("onRoute", buildHook("pluginThree")) // [4]
+    subPlugin.get("/three", async () => "three")
+  })
+})
 
 function buildHook(id) {
   return function hook(routeOptions) {
-    console.log(`onRoute ${id} called from ${routeOptions.path}`);
-  };
+    console.log(`onRoute ${id} called from ${routeOptions.path}`)
+  }
 }
 
 app
@@ -34,4 +34,4 @@ app
   })
   .then((address) => {
     // Server is now listening on ${address}
-  });
+  })

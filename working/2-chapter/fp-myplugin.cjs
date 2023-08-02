@@ -1,8 +1,8 @@
-const fp = require("fastify-plugin");
+const fp = require("fastify-plugin")
 
 async function myPlugin(fastify, _options) {
-  console.log("myPlugin decorates the parent instance.");
-  fastify.decorate("myPlugin", "hello from myPlugin.!!!!!!!!!!!!!!!!!!!");
+  console.log("myPlugin decorates the parent instance.")
+  fastify.decorate("myPlugin", "hello from myPlugin.!!!!!!!!!!!!!!!!!!!")
 }
 
 module.exports = fp(
@@ -13,4 +13,4 @@ module.exports = fp(
     fastify: "4.x", // [3]
     decorators: { fastify: ["root"] }, // [4]
   }
-);
+)

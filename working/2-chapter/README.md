@@ -1,4 +1,3 @@
-
 # Chapter 2 - Plugin System and Boot Process
 
 You will learn the importance of Fastify plugins for developers, highlighting their role in achieving reusability, code sharing, and proper encapsulation between Fastify instances.  

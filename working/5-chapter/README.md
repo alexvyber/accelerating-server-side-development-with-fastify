@@ -1,4 +1,3 @@
-
 # Chapter 5 - Validation and Serialization
 
 You will learn how to validate input data and serialize the output data.
