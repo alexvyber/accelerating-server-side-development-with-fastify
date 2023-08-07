@@ -1,3 +1,6 @@
 [submodule "source"]
 	path = source
 	url = https://github.com/PacktPublishing/Accelerating-Server-Side-Development-with-Fastify.git
+[submodule "working/testing-fastify"]
+	path = working/testing-fastify
+	url = https://github.com/alexvyber/testing-fastify.git
